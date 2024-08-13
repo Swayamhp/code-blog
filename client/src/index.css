@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  height: 100vh;
+}
+.quill{
+  font-size: large;
+}
+
+  
+.AceEditor{
+border:1px solid lightgray;
+margin:auto;
+width:80%;
+background-color: green;
+
+}
