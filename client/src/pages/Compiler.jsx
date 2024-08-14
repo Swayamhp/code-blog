@@ -153,7 +153,7 @@ export default function App() {
             <Alert color='failure' >{Error}</Alert>
           )}</div>
         </div>
-        <AceEditor mode='c_cpp' theme={userTheme} value="//Code starts here"
+        <AceEditor mode='c_cpp' theme={userTheme} 
           onChange={(value) => {
             setUserCode(value); 
           }}
