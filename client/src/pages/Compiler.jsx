@@ -10,8 +10,7 @@ import { useState } from 'react'
 import Axios from "axios";
 import spinner from "./Spinner.svg";
 
-
-const apiKey = "36ab48dfacmshd43d949f2c59babp11801bjsn73f7dbd79d52";
+const apiKey =import.meta.env.VITE_RAPID_COMPILER_API_KEY;
 const appURL = "https://judge0-ce.p.rapidapi.com/submissions";
 
 export default function App() {
