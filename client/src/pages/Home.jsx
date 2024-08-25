@@ -25,10 +25,10 @@ export default function Home() {
       <div className="flex flex-col gap-6 lg:p-28 p-3 max-w-6xl
       mx-auto">
       <h1 className='text-3xl font-bold
-      lg:text-6xl'>Welcome to my Blog</h1>   
+      lg:text-6xl'>Welcome to Code Blog</h1>   
       <p1 className='text-gray-500 text-xs
-      sm:text-sm'>Here you will find a variety of articles and tutorials
-        on topics such as webdevlopement, software engineering,
+      sm:text-sm'>Here you will post a variety of codes and tutorials
+        on topics such as dsa, software engineering,
         and programming languages.
       </p1>
       <Link to='/search' className='text-xs sm:text-sm text-teal-500

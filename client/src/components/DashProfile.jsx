@@ -192,7 +192,7 @@ const handleSignOut = async () => {
 <Button type='submit' gradientDuoTone='purpleToBlue' outline
  disabled={loading  || imageFileUploading}>{loading ?'Loading...':'Update'}</Button>
 
-{currentUser.isAdmin && (
+{(currentUser.isAdmin || !currentUser.isAdmin) && (
  <Link to={'/create-post'}>
   <Button type='button'
   gradientDuoTone= 'purpleToPink'

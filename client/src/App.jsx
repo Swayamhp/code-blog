@@ -39,9 +39,9 @@ export default function App() {
    <Route path="/compiler"
    element={currentUser?(<Compiler />):(<Navigate to='/sign-in'/>)}/>
    <Route path='/post/:postSlug' element={<PostPage />}/>
+   <Route path='create-post' element={<CreatePost />} />
+   <Route path='/update-post/:postId' element={<UpdatePost/>}/>
 <Route element={<AdminPrivateRoute />}>
-<Route path='create-post' element={<CreatePost />} />
-<Route path='/update-post/:postId' element={<UpdatePost/>}/>
 <Route path='/problems' element={<Problems />} />
 </Route>
   </Routes>

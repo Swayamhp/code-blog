@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Button, Select, TextInput} from 'flowbite-react'
-import {useLocation, useNavigate, useNavigation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import PostCard from '../components/PostCard';
 
 export default function Search() {
@@ -33,11 +33,12 @@ const fetchPosts = async() =>{
   setLoading(true);
   const searchQuery = urlParams.toString();
   const res = await fetch(`/api/post/getposts?${searchQuery}`);
+  const data = await res.json();
+
   if(!res.ok){
     setLoading(false);
 return;  }
 if(res.ok){
-  const data = await res.json();
   setPosts(data.posts);
   setLoading(false);
   if(data.posts.length === 9){
@@ -126,9 +127,9 @@ const handleSubmit  = (e) =>{
             )
           }
           {
-            !loading && posts && posts.map((post)=>{
+            !loading && posts && posts.map((post)=>
               <PostCard key={post._id} post={post} /> 
-            })
+            )
           }
         </div>
         </div>

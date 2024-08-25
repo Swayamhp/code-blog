@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 
 export default function DashSiderbar() {
+  
   const dispatch = useDispatch();
   const location=useLocation();
   const [tab,setTab]=useState('');
@@ -53,7 +54,7 @@ const handleSignOut = async () => {
              icon={HiAnnotation} as='div'>
                Dashboards</Sidebar.Item></Link>
           )}  
-          {currentUser.isAdmin && (
+          {(currentUser.isAdmin || !currentUser.isAdmin) && (
              <Link to='/dashboard?tab=posts'>
              <Sidebar.Item
              active={tab === 'posts'}

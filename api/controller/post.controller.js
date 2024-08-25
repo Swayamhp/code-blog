@@ -2,9 +2,6 @@ import Post from "../models/post.modules.js";
 import { errorHandler } from "../utils/error.js";
 
 export const create = async(req, res, next) => {
-if(!req.user.isAdmin){
-  return next(errorHandler(403, 'You are not allowed create a post'));
-}
 if(!req.body.title || !req.body.content ){
   return next(errorHandler(403, "Please provide all required fields"));
 }
@@ -17,6 +14,7 @@ const newPost = new Post ({
   ...req.body,
   slug,
   userId:req.user.id,
+  username:req.username,
 });
 try{
   const savedPost = await newPost.save();
@@ -38,9 +36,8 @@ const posts = await Post.find( {
   ...(req.query.postId && { _id: req.query.postId }),
   ...(req.query.searchTerm && { 
     $or: [
-      { title: { $regex: req.query.searchTerm, $optiions: 'i' } },
-      { content: { $regex: req.query.searchTerm, $optiions: 'i' } },
-      { code: { $regex: req.query.searchTerm, $optiions: 'i' } },
+      { title: { $regex: req.query.searchTerm, $options: 'i' } },
+      { content: { $regex: req.query.searchTerm, $options: 'i' } },
 
     ],
    }),
@@ -52,7 +49,6 @@ const posts = await Post.find( {
     now.getFullYear(),
     now.getMonth()-1,
     now.getDate()
-
   );
   const lastMonthPosts = await Post.countDocuments({
     createdAt: { $gte: oneMonthAgo },
@@ -78,9 +74,20 @@ export const deleteposts = async (req,res,next) => {
       next(error);
     }
 };
+export const deletepostsByAdmin = async (req,res,next) => {
+  if(!req.user.isAdmin ){
+    return next(errorHandler(403, 'You are not allowed to Delete this user'));
+    }
+    try{
+  await Post.findByIdAndDelete(req.params.postId);
+  res.status(200).json({message:"Deleted post succesfully"})
+    }catch(error){
+      next(error);
+    }
+};
 
 export const updatePost = async (req, res, next) => {
-  if(!req.user.isAdmin || req.params.userId !== req.user.id){
+  if( req.params.userId !== req.user.id){
     return next(errorHandler(403, 'You are not allowed to Update this user'));
     }
     try{
@@ -93,6 +100,7 @@ export const updatePost = async (req, res, next) => {
               code: req.body.code,
               category: req.body.category,
               image: req.body.image,
+
           }
         }, 
     {new:true}   )
