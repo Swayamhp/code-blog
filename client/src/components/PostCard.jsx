@@ -20,7 +20,7 @@ if(res.ok){
   },[post]);
   
   return (
-    <div className="group relative w-full border h-[400px]
+    <div className="group relative w-full border h-[350px]
      overflow-hidden hover:border-2 transition-all
     rounded-lg sm:w-[330px]">
       <Link to={`/post/${post.slug}`}>
