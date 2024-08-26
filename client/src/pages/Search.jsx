@@ -34,7 +34,7 @@ const fetchPosts = async() =>{
   const searchQuery = urlParams.toString();
   const res = await fetch(`/api/post/getposts?${searchQuery}`);
   const data = await res.json();
-
+console.log({searchQuery});
   if(!res.ok){
     setLoading(false);
 return;  }

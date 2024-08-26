@@ -39,7 +39,6 @@ if(res.ok){
 setPublishError(error.message)
   }
 },[postId]);
-console.log(postId);
   const handleUploadImage = async () => {
     try{
       if(!file){
@@ -103,7 +102,6 @@ else{
 setPublishError("Something went wrong !")
     }
   }
-  console.log(formData.title);
   return ( 
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
       <h1 className='text-center text-3xl font-semibold'>Update a Post
@@ -151,7 +149,7 @@ setPublishError("Something went wrong !")
         value={formData.content} placeholder='Write something...' className='h-72 mb-12'
                 onChange={(value)=> setFormData({...formData, content: value})}/>
                   <AceEditor  value={formData.code}theme='monokai' mode="c_cpp"
-         onChange={(val)=> setFormData({...formData,code: val})} />
+         onChange={(val)=> setFormData({...formData, code:val})} />
         <Button type='submit' gradientDuoTone='purpleToBlue'
          className='w-full text-xl lg ' 
          >Update</Button>

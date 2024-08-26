@@ -64,7 +64,7 @@ const posts = await Post.find( {
   }
 };
 export const deleteposts = async (req,res,next) => {
-  if(!req.user.isAdmin || req.params.userId !== req.user.id){
+  if( req.params.userId !== req.user.id){
     return next(errorHandler(403, 'You are not allowed to Delete this user'));
     }
     try{
